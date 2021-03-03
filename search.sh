@@ -1,13 +1,14 @@
 #!/bin/bash
 
 #
-#	Script for finding a server on the network and local
-#	03/2017
+#	The MULTI-SEARCHER v1.1
+#	Created: Mar 2017
+#       Updated: Mar 2021
 
 input=$1
 if [ -z "$1" ]
 then
-	echo "Usage: search [HostName].. ex: search riker2"
+	echo "Usage: search [HostName].. ex: search my-server2"
 	exit 1
 fi
 
@@ -19,7 +20,7 @@ else
 	echo "Searching known hosts..."
 	sleep 0.5
 	grep $input ~/.ssh/known_hosts | awk 'BEGIN {FS=","}{print $2}'| awk '{print $1}' | grep -v "ssh-rsa"
-	echo ""
+	echo 
 	echo "Locate file on the system?"
 	read choice
 	if [ $choice == "y" ]
@@ -36,5 +37,3 @@ else
 		exit 3
 	fi
 fi
-
-
